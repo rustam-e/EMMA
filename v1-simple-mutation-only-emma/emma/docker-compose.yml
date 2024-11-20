@@ -1,0 +1,8 @@
+version: "3.8"
+services:
+  app:
+    build: .
+    volumes:
+      - .:/usr/src/app
+    ports:
+      - "5000:5000" # Expose ports if your app needs to be accessible on the network

@@ -1,0 +1,26 @@
+# TO RUN
+#docker build -t elma .
+#docker run -e OPENAI_API_KEY=your_api_key_here elma
+
+# Use an official Python runtime as a parent image
+FROM python:3.10-slim
+
+# Set the working directory in the container
+WORKDIR /usr/src/app
+
+# Copy the current directory contents into the container at /usr/src/app
+COPY . .
+
+# Install any needed packages specified in requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Install pylint for linting (optional, remove if not needed)
+RUN pip install pylint
+
+# Run pylint (optional, remove if not needed)
+RUN pylint **/*.py || true
+
+# Set environment variable for OpenAI API key
+
+# Run the script when the container launches
+CMD ["python", "main.py"]
